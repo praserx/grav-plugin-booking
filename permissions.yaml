@@ -1,0 +1,4 @@
+actions:
+  booking.admin:
+    type: access
+    label: Manage bookings and facilities

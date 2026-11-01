@@ -1,0 +1,821 @@
+en:
+  PLUGIN_BOOKING:
+    # Plugin metadata
+    NAME: Booking
+    DESCRIPTION: Facility and room booking plugin for Grav 2
+    
+    # Configuration labels
+    CONFIG:
+      SECTION_GENERAL: General Settings
+      SECTION_FACILITIES: Facilities
+      SECTION_BOOKING_RULES: Booking Rules
+      SECTION_NOTIFICATIONS: Notifications
+      
+      ENABLED: Plugin Enabled
+      ENABLED_HELP: Enable or disable the booking plugin
+      
+      FACILITY_NAME: Facility Name
+      FACILITY_NAME_HELP: Display name for this facility
+      FACILITY_SLUG: Facility Slug
+      FACILITY_SLUG_HELP: Unique identifier for this facility (used in URLs)
+      FACILITY_TIMEZONE: Timezone
+      FACILITY_TIMEZONE_HELP: IANA timezone for this facility (e.g., Europe/Prague)
+      FACILITY_MODE: Booking Mode
+      FACILITY_MODE_HELP: How this facility can be booked
+      FACILITY_MODE_FACILITY: Whole facility only
+      FACILITY_MODE_RESOURCES: Individual resources only
+      FACILITY_MODE_BOTH: Both facility and resources
+      FACILITY_APPROVAL: Approval Mode
+      FACILITY_APPROVAL_HELP: How bookings are approved
+      FACILITY_APPROVAL_AUTO: Automatic
+      FACILITY_APPROVAL_MANUAL: Manual
+      
+      SLOT_LENGTH: Slot Length (minutes)
+      SLOT_LENGTH_HELP: Default booking slot duration in minutes
+      CAPACITY: Capacity
+      CAPACITY_HELP: Maximum number of simultaneous bookings (0 = unlimited)
+      WORKING_HOURS_START: Working Hours Start
+      WORKING_HOURS_START_HELP: Daily start time (HH:MM format)
+      WORKING_HOURS_END: Working Hours End
+      WORKING_HOURS_END_HELP: Daily end time (HH:MM format)
+      BOOKING_HORIZON: Booking Horizon (days)
+      BOOKING_HORIZON_HELP: How far in advance bookings can be made
+      MIN_ADVANCE_NOTICE: Minimum Advance Notice (hours)
+      MIN_ADVANCE_NOTICE_HELP: Minimum hours before a booking can start
+      PENDING_BLOCKS_AVAILABILITY: Pending Bookings Block Availability
+      PENDING_BLOCKS_AVAILABILITY_HELP: When enabled, pending bookings reserve slots
+    
+    # Admin interface
+    ADMIN:
+      TITLE: Booking Management
+      BOOKINGS: Bookings
+      BOOKING_LIST: Booking List
+      BOOKING_DETAILS: Booking Details
+      NO_BOOKINGS: No bookings found
+      
+      FACILITY: Facility
+      RESOURCE: Resource
+      RESOURCE_NONE: No resource (whole facility)
+      CUSTOMER_NAME: Customer Name
+      CUSTOMER_EMAIL: Customer Email
+      CUSTOMER_PHONE: Customer Phone
+      START_TIME: Start Time
+      END_TIME: End Time
+      STATUS: Status
+      CREATED: Created
+      UPDATED: Updated
+      NOTES: Notes
+      ADMIN_NOTES: Admin Notes
+      
+      STATUS_PENDING: Pending
+      STATUS_VERIFICATION_PENDING: Awaiting email verification
+      STATUS_CONFIRMED: Confirmed
+      STATUS_REJECTED: Rejected
+      STATUS_CANCELLED: Cancelled
+      
+      ACTION_CONFIRM: Confirm
+      ACTION_REJECT: Reject
+      ACTION_CANCEL: Cancel
+      ACTION_DELETE: Delete
+      ACTION_EDIT: Edit
+      ACTION_VIEW: View
+      ACTION_BACK: Back to List
+      
+      CONFIRM_ACTION: Are you sure you want to perform this action?
+
+      UI:
+        ADMINISTRATION: ADMINISTRATION
+        BOOKING: Booking
+        HEADER_DESCRIPTION: Manage booking requests, facilities, availability and notifications.
+        FACILITY_SETTINGS_TABS: Facility settings sections
+        TAB_GENERAL: General
+        TAB_BOOKING: Booking options
+        TAB_AVAILABILITY: Availability
+        TAB_RESOURCES: Rooms and resources
+        TAB_ACCESS: Access
+        TAB_NOTIFICATIONS: Notifications
+        SIMPLE_BOOKING_OPTIONS: Simple booking options
+        DEFAULT_BOOKING_ENTRY: Default time-entry mode
+        DEFAULT_BOOKING_ENTRY_HELP: This is the starting view in the admin booking dialog. You can switch modes for each booking.
+        SIMPLE_MODE: Simple
+        CUSTOM_MODE: Custom date and time
+        WHOLE_DAY_CHECK_IN: Whole-day check-in time
+        WHOLE_DAY_CHECK_OUT: Whole-day check-out time
+        WHOLE_DAY_TIME_HELP: Whole-facility bookings use these local times on the selected dates.
+        ROOM_BOOKING_PERIODS: Room booking periods
+        ROOM_BOOKING_PERIODS_HELP: These named periods appear when a room or resource is selected.
+        ADD_PERIOD: Add period
+        PERIOD_NAME: Period name
+        REMOVE_PERIOD: Remove period
+        BOOKING_TIME_MODE: Time entry
+        BOOKING_DATE: Booking date
+        BOOKING_PERIOD: Period
+        CHOOSE_PERIOD: Choose a period
+        CHECK_IN_DATE: Check-in date
+        CHECK_OUT_DATE: Check-out date
+        CHECKOUT_AFTER_CHECKIN: The check-out date must be after the check-in date.
+        SIMPLE_SLOT_TOO_SHORT: This period is shorter than the facility's minimum booking duration.
+        SIMPLE_SLOT_TOO_LONG: This period exceeds the facility's maximum booking duration. Adjust the booking rules or choose custom times.
+        INVALID_SIMPLE_TIME: This booking period has an invalid time.
+        INVALID_SIMPLE_SLOT: Each room period needs a name and a valid end time after its start time.
+        AT_LEAST_ONE_SIMPLE_SLOT: Keep at least one room booking period.
+        INVALID_WHOLE_DAY_TIMES: Enter valid check-in and check-out times for whole-day bookings.
+        LEGACY_DATA_IMPORT: Legacy data import
+        IMPORT_NEEDS_ATTENTION: "The import needs attention:"
+        LEGACY_ALREADY_IMPORTED: This legacy import has already completed.
+        LEGACY_FILES_PRESERVED: The import preserves the original YAML and JSON files.
+        IMPORT_LEGACY_DATA: Import legacy data
+        DISMISS_MESSAGE: Dismiss message
+        BOOKING_ADMINISTRATION: Booking administration
+        BOOKINGS: Bookings
+        FACILITIES: Facilities
+        AVAILABILITY_BLOCKS: Availability blocks
+        ALL_BOOKINGS: All bookings
+        BOOKINGS_DESCRIPTION: Review requests, change their status or manage a booking.
+        BOOKING_VIEW: Booking view
+        TABLE_VIEW: Table
+        CALENDAR_VIEW: Calendar
+        BOOKING_CALENDAR: Booking calendar
+        BOOKING_STATUS_LEGEND: Booking status legend
+        BOOKINGS_THIS_MONTH: Bookings this month
+        PREVIOUS_MONTH: Previous month
+        NEXT_MONTH: Next month
+        TODAY: Today
+        LOADING_CALENDAR: Loading bookings for this month…
+        NO_BOOKINGS_DAY: No bookings
+        REFRESH: Refresh
+        NEW_BOOKING: New booking
+        FACILITY: Facility
+        ALL_FACILITIES: All facilities
+        STATUS: Status
+        ALL_STATUSES: All statuses
+        FILTER_HINT: Narrow the list by facility or status.
+        ROOM: Room
+        REQUESTER: Requester
+        START: Start
+        END: End
+        ACTIONS: Actions
+        LOADING_BOOKINGS: Loading bookings…
+        NO_BOOKINGS_MATCH_FILTERS: No bookings match these filters
+        NO_BOOKINGS_YET: No bookings yet
+        CHANGE_BOOKING_FILTERS: Try changing the facility or status filters.
+        CREATE_OR_WAIT_BOOKING: Create a booking for a requester, or wait for requests from the booking form.
+        CREATE_BOOKING: Create booking
+        DETAILS: Details
+        EDIT: Edit
+        APPROVE: Approve
+        REJECT: Reject
+        REVOKE: Revoke
+        DELETE: Delete
+        NO_BOOKINGS_TO_SHOW: No bookings to show
+        PREVIOUS: Previous
+        NEXT: Next
+        FACILITIES_DESCRIPTION: Set schedules, booking rules, member access and email preferences for each facility.
+        ADD_FACILITY: Add facility
+        MODE: Mode
+        APPROVAL: Approval
+        AVAILABILITY: Availability
+        LOADING_FACILITIES: Loading facilities…
+        FIRST_FACILITY_TITLE: Set up your first facility
+        FIRST_FACILITY_DESCRIPTION: Facilities define where people can book, which rooms are available and who can approve requests.
+        DISABLED: Disabled
+        BLOCKS_DESCRIPTION: Keep dates or recurring times unavailable for bookings.
+        BLOCK_DATE_TIME: Block a date and time
+        BLOCK_DATE_TIME_DESCRIPTION: Make a one-time period unavailable for a facility or room.
+        CHOOSE_FACILITY: Choose a facility
+        ALL_ROOMS: All rooms
+        TITLE: Title
+        ADD_BLOCK: Add block
+        RECURRING_UNAVAILABLE: Recurring unavailable time
+        RECURRING_UNAVAILABLE_DESCRIPTION: Block the same day and time every week.
+        WEEKDAY: Weekday
+        ADD_RECURRING_BLOCK: Add recurring block
+        CURRENT_BLOCKS: Current blocks
+        CURRENT_BLOCKS_DESCRIPTION: Existing one-time and weekly unavailable periods.
+        TYPE: Type
+        WHEN: When
+        LOADING_BLOCKS: Loading availability blocks…
+        NO_BLOCKS_CONFIGURED: No availability blocks configured.
+        ONE_TIME: One time
+        WEEKLY: Weekly
+        REMOVE: Remove
+        BOOKING_RECORD: BOOKING RECORD
+        BOOKING_DETAILS: Booking details
+        TIME: Time
+        REQUESTER_NOTE: Requester note
+        ADMINISTRATOR_NOTE: Administrator note
+        HISTORY: History
+        NO_EVENTS_RECORDED: No events recorded.
+        EMAIL_DELIVERY: Email delivery
+        TO: to
+        REDACTED: (redacted)
+        EMAIL_PENDING: Pending
+        EMAIL_SENT: Sent
+        EMAIL_FAILED: Failed
+        NO_EMAIL_NOTIFICATIONS_QUEUED: No email notifications were queued.
+        CLOSE: Close
+        FACILITY_SETTINGS: FACILITY SETTINGS
+        EDIT_FACILITY: Edit facility
+        NEW_FACILITY: New facility
+        FACILITY_ID: Facility ID
+        FACILITY_ID_HELP: Lowercase letters, numbers and hyphens. This ID cannot be changed later.
+        NAME: Name
+        DESCRIPTION: Description
+        TIMEZONE: Timezone
+        BOOKING_MODE: Booking mode
+        MODE_FACILITY: Facility
+        MODE_RESOURCES: Rooms and resources
+        MODE_BOTH: Facility or room
+        DEFAULT_APPROVAL: Default approval
+        APPROVAL_MANUAL: Manual review
+        APPROVAL_AUTOMATIC: Automatic approval
+        ENABLED_FOR_BOOKING: Enabled for booking
+        AVAILABILITY_HOURS: Availability hours
+        ONE_RANGE_PER_LINE: One range per line
+        AVAILABILITY_HELP: Use weekday abbreviations and 24-hour time, for example
+        ROOMS_AND_RESOURCES: Rooms and resources
+        ONE_ROOM_PER_LINE: One room per line
+        ROOMS_HELP_PREFIX: Leave group columns empty to inherit facility access rules. Set the final column to
+        ROOMS_HELP_SUFFIX: to disable a room.
+        BOOKING_RULES: Booking rules
+        MINIMUM_DURATION: Minimum duration (minutes)
+        MAXIMUM_DURATION: Maximum duration (minutes)
+        BOOKING_INTERVAL: Booking interval (minutes)
+        MINIMUM_NOTICE: Minimum advance notice (hours)
+        BOOKING_HORIZON: Booking horizon (days)
+        PENDING_BLOCKS: Pending requests always reserve their selected time
+        MEMBER_ACCESS: Member access
+        ALLOW_GUEST_REQUESTS: Allow booking requests from guests
+        ALLOWED_GROUPS: Grav groups allowed to book
+        ANY_MEMBER_IF_EMPTY: Any member if empty
+        COMMA_SEPARATED_GROUPS: Comma-separated Grav group names.
+        INSTANT_APPROVAL_GROUPS: Grav groups approved immediately
+        GROUPS_EXAMPLE: "For example: facility-members"
+        INSTANT_APPROVAL_HELP: Eligible members must sign in. Room-specific rules can further restrict access.
+        EMAIL_NOTIFICATIONS: Email notifications
+        SEND_EMAIL_NOTIFICATIONS: Send email notifications to facility administrators
+        FACILITY_ADMIN_EMAILS: Facility administrator email addresses
+        ADMIN_EMAILS_HELP: Leave empty when this facility should not send administrator email.
+        NOTIFY_FACILITY_CONTACTS: Notify facility contacts
+        NOTIFY_REQUESTER: Notify the requester
+        REQUESTER_REQUIRED_EMAILS_HELP: Email verification and request/approval updates are always sent to the requester. Choose other update types below.
+        CUSTOMIZE_EMAIL_TEMPLATES: Customize booking emails
+        EMAIL_TEMPLATE_HELP: "Message bodies accept HTML and inline images. Placeholder values are HTML-escaped; executable Twig or PHP is not supported."
+        EMAIL_SINGLE_LANGUAGE_NOTE: Email templates are shared by all site languages and are sent as written here. The site or administrator language does not select a translation.
+        EMAIL_PLACEHOLDERS: Available placeholders
+        EMAIL_LAYOUT_OVERRIDE: Optional layout override
+        EMAIL_MESSAGES: Email messages
+        EMAIL_EVENT_VERIFICATION: Verify email address
+        EMAIL_EVENT_NEW_REQUEST_ADMIN: New request for facility administrators
+        EMAIL_EVENT_NEW_REQUEST_REQUESTER: New request for requester
+        EMAIL_EVENT_APPROVAL: Booking approved
+        EMAIL_EVENT_PAYMENT: Payment information
+        EMAIL_EVENT_REJECTED: Booking rejected
+        EMAIL_EVENT_CANCELLED: Booking cancelled
+        EMAIL_EVENT_EDITED: Booking updated
+        EMAIL_LAYOUT_HTML: Core email layout (HTML)
+        EMAIL_LAYOUT_HELP: "Leave blank to use the built-in responsive layout. Include {{ email.body }} where each event message should appear."
+        VERIFICATION_EMAIL_SUBJECT: Email verification subject
+        PENDING_ADMIN_EMAIL_SUBJECT: New request email subject (administrators)
+        PENDING_REQUESTER_EMAIL_SUBJECT: New request email subject (requester)
+        APPROVAL_EMAIL_SUBJECT: Approval email subject
+        PAYMENT_EMAIL_SUBJECT: Payment email subject
+        VERIFICATION_EMAIL_BODY: Email verification message (HTML)
+        PENDING_ADMIN_EMAIL_BODY: New request message for administrators (HTML)
+        PENDING_REQUESTER_EMAIL_BODY: New request message for requester (HTML)
+        APPROVAL_EMAIL_BODY_HTML: Approval message (HTML)
+        PAYMENT_EMAIL_BODY_HTML: Payment information message (HTML)
+        PAYMENT_EMAIL_HTML_HELP: You can include HTML and inline images such as data:image/png;base64,… . Variables are escaped automatically.
+        REJECTED_EMAIL_SUBJECT: Rejected request email subject
+        REJECTED_EMAIL_BODY: Rejected request message (HTML)
+        CANCELLED_EMAIL_SUBJECT: Cancelled booking email subject
+        CANCELLED_EMAIL_BODY: Cancelled booking message (HTML)
+        EDITED_EMAIL_SUBJECT: Updated booking email subject
+        EDITED_EMAIL_BODY: Updated booking message (HTML)
+        SEND_PAYMENT_INFORMATION: Send payment information
+        PAYMENT_EMAIL_SENT: Payment information email sent.
+        SAVE_FACILITY: Save facility
+        CANCEL: Cancel
+        EDIT_BOOKING: Edit booking
+        ROOM_OR_RESOURCE: Room or resource
+        CHOOSE_ROOM: Choose a room
+        FACILITY_BOOKING: Facility booking
+        REQUESTER_NAME: Requester name
+        REQUESTER_EMAIL: Requester email
+        PHONE: Phone
+        PENDING_APPROVAL: Pending approval
+        SAVE_BOOKING: Save booking
+        ADD_FACILITY_BEFORE_BOOKING: Add a facility before creating a booking.
+        FACILITY_SAVED: Facility saved.
+        FACILITY_DELETED: Facility deleted.
+        BOOKING_CREATED: Booking created.
+        BOOKING_UPDATED: Booking updated.
+        BOOKING_STATUS_UPDATED: Booking status updated.
+        BOOKING_DELETED: Booking deleted.
+        INVALID_AVAILABILITY_WINDOW: Each availability range must contain a start and end separated by a hyphen.
+        ROOM_ID_AND_NAME_REQUIRED: Each room needs an ID and name separated by |.
+        ENTER_START_AND_END: Enter both start and end times.
+        DAYLIGHT_SAVING_GAP: This local time does not exist because of a daylight saving time change.
+        DELETE_FACILITY_TITLE: Delete facility?
+        DELETE_FACILITY_MESSAGE: Facilities with bookings or availability history cannot be deleted.
+        DELETE_FACILITY: Delete facility
+        APPROVE_BOOKING_TITLE: Approve booking?
+        APPROVE_BOOKING_MESSAGE: This will approve the selected booking.
+        REJECT_BOOKING_TITLE: Reject booking?
+        REJECT_BOOKING_MESSAGE: This will reject the selected booking.
+        REVOKE_BOOKING_TITLE: Revoke booking?
+        REVOKE_BOOKING_MESSAGE: This will revoke the selected booking.
+        DELETE_BOOKING_TITLE: Delete booking permanently?
+        DELETE_BOOKING_MESSAGE: The booking and its requester details will be removed. This cannot be undone.
+        DELETE_BOOKING: Delete booking
+        IMPORT_LEGACY_TITLE: Import legacy booking data?
+        IMPORT_LEGACY_MESSAGE: Import the existing YAML and JSON booking data into SQLite. The original files will be preserved.
+        IMPORT_DATA: Import data
+        BLOCK_ADDED: Availability block added.
+        RECURRING_BLOCK_ADDED: Recurring availability block added.
+        REMOVE_BLOCK_TITLE: Remove availability block?
+        REMOVE_BLOCK_MESSAGE: This unavailable period will no longer prevent bookings.
+        REMOVE_BLOCK: Remove block
+        LOAD_FACILITIES_FAILED: "Could not load facilities:"
+        LOAD_BOOKINGS_FAILED: "Could not load bookings:"
+        LOAD_BLOCKS_FAILED: "Could not load availability blocks:"
+        LOAD_MIGRATION_FAILED: "Could not inspect legacy booking data:"
+        BY: by
+        EVENT_CREATED: Created
+        EVENT_CONFIRMED: Confirmed
+        EVENT_REJECTED: Rejected
+        EVENT_CANCELLED: Cancelled
+        EVENT_EDITED: Edited
+        EVENT_EMAIL_VERIFICATION: Email verification
+        EVENT_EMAIL_VERIFIED: Email verified
+        EVENT_VERIFICATION_CONFLICT: Cancelled after availability changed
+        EVENT_PAYMENT_INFORMATION: Payment information
+        EVENT_DELETED: Deleted
+        PAGE_BOOKING_FORM: Booking form
+
+    # Public booking form
+    PUBLIC:
+      TITLE: Book a Facility
+      SELECT_FACILITY: Select Facility
+      SELECT_RESOURCE: Select Resource
+      SELECT_DATE: Select Date
+      END_DATE: End Date
+      SELECT_TIME: Select Time
+      CHOOSE_DATES: Choose an available date
+      CALENDAR_HINT: Select a facility, then choose available dates. The calendar shows availability only, without booking details.
+      CALENDAR_HINT_SINGLE: Choose available dates. The calendar shows availability only, without booking details.
+      AVAILABILITY: Availability
+      AVAILABLE: Available
+      UNAVAILABLE: Unavailable
+      SELECTED: Selected
+      CHECK_IN: Check-in
+      CHECK_OUT: Check-out
+      CHECK_OUT_BOUNDARY_NOTE: The check-out date marks the end of your booking and is not included in the reserved dates.
+      CHECKOUT_OPTION: This date can only be used as a check-out date.
+      PREVIOUS_MONTH: Previous month
+      NEXT_MONTH: Next month
+      SELECT_CHECK_IN: Select a check-in date.
+      SELECT_CHECK_OUT: Select a later check-out date.
+      SELECT_PERIOD: Booking period
+      SELECT_PERIOD_PROMPT: Choose a period
+      LOADING_AVAILABILITY: Loading available dates…
+      AVAILABILITY_LOAD_FAILED: Available dates could not be loaded. Please try again.
+      RETRY: Try again
+      RANGE_UNAVAILABLE: One or more days in this date range are unavailable. Choose another range.
+      MAKE_RESERVATION: Make a reservation
+      BOOKING_DETAILS: Your details
+      CHANGE_DATES: Change dates
+      BOOKING_SUMMARY: Selected dates
+      SUBMITTING_BOOKING: Submitting your reservation…
+      SLOT_UNAVAILABLE: These dates are no longer available. Choose another date range.
+      TIME_CHANGE_DATE: The selected time is affected by a clock change. Choose another date.
+      SUBMIT_FAILURE: Your reservation could not be submitted. Please try again.
+      YOUR_NAME: Your Name
+      YOUR_EMAIL: Your Email
+      YOUR_PHONE: Your Phone (optional)
+      YOUR_NOTES: Additional Notes (optional)
+      SUBMIT_BOOKING: Submit Booking
+      CHECK_AVAILABILITY: Check Availability
+      NO_FACILITIES: No facilities are currently available for booking.
+      NO_RESOURCES: No resources are available for this facility.
+      NO_SLOTS_AVAILABLE: No time slots are available for the selected date.
+      BOOKING_SUCCESS: Your booking has been submitted successfully.
+      BOOKING_PENDING: Your booking request has been submitted and is pending approval.
+      BOOKING_CONFIRMED: Your booking has been confirmed.
+      VERIFY_EMAIL_TITLE: Verify your email address
+      VERIFY_EMAIL_HINT: Enter the six-digit code we sent to your email address. The code expires after 24 hours.
+      VERIFICATION_CODE: Verification code
+      VERIFY_EMAIL: Verify and complete reservation
+      RESEND_CODE: Send a new code
+      VERIFICATION_SENT: Check your email for a six-digit verification code. The booking request will be sent for approval after verification.
+      VERIFICATION_EMAIL_FAILED: The request was created, but the verification email could not be sent. Try sending a new code in a moment.
+      VERIFICATION_CODE_INVALID: The code is invalid or expired. Check it and try again.
+      VERIFICATION_SUCCESS: Your email address has been verified and the reservation is complete.
+      VERIFICATION_RESENT: A new verification code has been sent. It is valid for 24 hours.
+
+    # Error messages
+    ERRORS:
+      FACILITY_NOT_FOUND: The selected facility was not found.
+      RESOURCE_NOT_FOUND: The selected resource was not found.
+      INVALID_DATE: The selected date is invalid.
+      INVALID_TIME: The selected time is invalid.
+      INVALID_DURATION: The booking duration is invalid.
+      SLOT_UNAVAILABLE: The selected time slot is no longer available.
+      CONFLICTING_BOOKING: This time slot conflicts with an existing booking.
+      OUTSIDE_WORKING_HOURS: The selected time is outside working hours.
+      TOO_FAR_AHEAD: Bookings cannot be made more than %d days in advance.
+      TOO_SOON: Bookings must be made at least %d hours in advance.
+      MISSING_REQUIRED_FIELD: The field "%s" is required.
+      INVALID_EMAIL: The email address is invalid.
+      CSRF_TOKEN_INVALID: Security token validation failed. Please try again.
+      PERMISSION_DENIED: You do not have permission to perform this action.
+      BOOKING_NOT_FOUND: The booking was not found.
+      INVALID_STATUS_TRANSITION: This status change is not allowed.
+      GENERAL_ERROR: An error occurred while processing your request. Please try again.
+
+  ICU:
+    PLUGIN_BOOKING:
+      ADMIN:
+        UI:
+          LEGACY_COUNTS: "Found facilities: {facilities}; bookings: {bookings}; time blocks: {blocks}; recurring blocks: {recurring}."
+          LEGACY_IMPORTED: "Import complete: facilities {facilities}, bookings {bookings}, time blocks {blocks}."
+          BOOKINGS_PAGINATION: "Showing {first}–{last} of {total} bookings"
+          EVENT_BY_ACTOR: "{action} by {actor}"
+
+cs:
+  PLUGIN_BOOKING:
+    NAME: Rezervace
+    DESCRIPTION: Správa rezervací zařízení a místností pro Grav 2
+    CONFIG:
+      SECTION_GENERAL: Obecné nastavení
+      SECTION_FACILITIES: Zařízení
+      SECTION_BOOKING_RULES: Pravidla rezervací
+      SECTION_NOTIFICATIONS: Upozornění
+      ENABLED: Povolit rezervace
+      ENABLED_HELP: Zapnout nebo vypnout plugin rezervací
+    ADMIN:
+      TITLE: Správa rezervací
+      BOOKINGS: Rezervace
+      BOOKING_LIST: Seznam rezervací
+      BOOKING_DETAILS: Podrobnosti rezervace
+      NO_BOOKINGS: Nebyly nalezeny žádné rezervace
+      FACILITY: Zařízení
+      RESOURCE: Místnost
+      RESOURCE_NONE: Bez místnosti (celé zařízení)
+      CUSTOMER_NAME: Jméno žadatele
+      CUSTOMER_EMAIL: E-mail žadatele
+      CUSTOMER_PHONE: Telefon žadatele
+      START_TIME: Začátek
+      END_TIME: Konec
+      STATUS: Stav
+      CREATED: Vytvořeno
+      UPDATED: Aktualizováno
+      NOTES: Poznámky
+      ADMIN_NOTES: Poznámky správce
+      STATUS_PENDING: Čeká na schválení
+      STATUS_VERIFICATION_PENDING: Čeká na ověření e-mailu
+      STATUS_CONFIRMED: Schváleno
+      STATUS_REJECTED: Zamítnuto
+      STATUS_CANCELLED: Zrušeno
+      ACTION_CONFIRM: Schválit
+      ACTION_REJECT: Zamítnout
+      ACTION_CANCEL: Zrušit
+      ACTION_DELETE: Smazat
+      ACTION_EDIT: Upravit
+      ACTION_VIEW: Zobrazit
+      ACTION_BACK: Zpět na seznam
+      CONFIRM_ACTION: Opravdu chcete tuto akci provést?
+      UI:
+        ADMINISTRATION: SPRÁVA
+        BOOKING: Rezervace
+        HEADER_DESCRIPTION: Správa požadavků, zařízení, dostupnosti a e-mailových oznámení.
+        FACILITY_SETTINGS_TABS: Sekce nastavení zařízení
+        TAB_GENERAL: Základní
+        TAB_BOOKING: Rezervace
+        TAB_AVAILABILITY: Dostupnost
+        TAB_RESOURCES: Místnosti a zdroje
+        TAB_ACCESS: Přístup
+        TAB_NOTIFICATIONS: Oznámení
+        SIMPLE_BOOKING_OPTIONS: Jednoduché možnosti rezervace
+        DEFAULT_BOOKING_ENTRY: Výchozí zadávání času
+        DEFAULT_BOOKING_ENTRY_HELP: Tento režim se otevře jako první v dialogu rezervace. U každé rezervace jej můžete změnit.
+        SIMPLE_MODE: Jednoduše
+        CUSTOM_MODE: Vlastní datum a čas
+        WHOLE_DAY_CHECK_IN: Čas začátku celodenní rezervace
+        WHOLE_DAY_CHECK_OUT: Čas konce celodenní rezervace
+        WHOLE_DAY_TIME_HELP: Rezervace celého zařízení používá v zadaných dnech tyto místní časy.
+        ROOM_BOOKING_PERIODS: Časové úseky pro místnosti
+        ROOM_BOOKING_PERIODS_HELP: Tyto pojmenované úseky se nabídnou po výběru místnosti nebo zdroje.
+        ADD_PERIOD: Přidat úsek
+        PERIOD_NAME: Název úseku
+        REMOVE_PERIOD: Odebrat úsek
+        BOOKING_TIME_MODE: Zadání času
+        BOOKING_DATE: Datum rezervace
+        BOOKING_PERIOD: Časový úsek
+        CHOOSE_PERIOD: Vyberte časový úsek
+        CHECK_IN_DATE: Datum začátku
+        CHECK_OUT_DATE: Datum konce
+        CHECKOUT_AFTER_CHECKIN: Datum konce musí být pozdější než datum začátku.
+        SIMPLE_SLOT_TOO_SHORT: Tento úsek je kratší než minimální délka rezervace zařízení.
+        SIMPLE_SLOT_TOO_LONG: Tento úsek překračuje maximální délku rezervace zařízení. Upravte pravidla rezervací nebo zvolte vlastní čas.
+        INVALID_SIMPLE_TIME: Tento časový úsek rezervace není platný.
+        INVALID_SIMPLE_SLOT: Každý úsek místnosti musí mít název a platný čas konce pozdější než začátek.
+        AT_LEAST_ONE_SIMPLE_SLOT: Ponechte alespoň jeden časový úsek pro rezervaci místnosti.
+        INVALID_WHOLE_DAY_TIMES: Zadejte platný čas začátku a konce rezervace na celý den.
+        LEGACY_DATA_IMPORT: Import starších dat
+        IMPORT_NEEDS_ATTENTION: "Import vyžaduje pozornost:"
+        LEGACY_ALREADY_IMPORTED: Import starších dat již byl dokončen.
+        LEGACY_FILES_PRESERVED: Původní soubory YAML a JSON zůstanou zachovány.
+        IMPORT_LEGACY_DATA: Importovat starší data
+        DISMISS_MESSAGE: Zavřít zprávu
+        BOOKING_ADMINISTRATION: Správa rezervací
+        BOOKINGS: Rezervace
+        FACILITIES: Zařízení
+        AVAILABILITY_BLOCKS: Blokace dostupnosti
+        ALL_BOOKINGS: Všechny rezervace
+        BOOKINGS_DESCRIPTION: Kontrolujte požadavky, měňte jejich stav a spravujte rezervace.
+        BOOKING_VIEW: Zobrazení rezervací
+        TABLE_VIEW: Tabulka
+        CALENDAR_VIEW: Kalendář
+        BOOKING_CALENDAR: Kalendář rezervací
+        BOOKING_STATUS_LEGEND: Legenda stavů rezervací
+        BOOKINGS_THIS_MONTH: Rezervace v tomto měsíci
+        PREVIOUS_MONTH: Předchozí měsíc
+        NEXT_MONTH: Další měsíc
+        TODAY: Dnes
+        LOADING_CALENDAR: Načítání rezervací pro tento měsíc…
+        NO_BOOKINGS_DAY: Bez rezervací
+        REFRESH: Obnovit
+        NEW_BOOKING: Nová rezervace
+        FACILITY: Zařízení
+        ALL_FACILITIES: Všechna zařízení
+        STATUS: Stav
+        ALL_STATUSES: Všechny stavy
+        FILTER_HINT: Omezte seznam podle zařízení nebo stavu.
+        ROOM: Místnost
+        REQUESTER: Žadatel
+        START: Začátek
+        END: Konec
+        ACTIONS: Akce
+        LOADING_BOOKINGS: Načítání rezervací…
+        NO_BOOKINGS_MATCH_FILTERS: Filtrům neodpovídají žádné rezervace
+        NO_BOOKINGS_YET: Zatím zde nejsou žádné rezervace
+        CHANGE_BOOKING_FILTERS: Zkuste změnit filtr zařízení nebo stavu.
+        CREATE_OR_WAIT_BOOKING: Vytvořte rezervaci pro žadatele nebo počkejte na požadavky z rezervačního formuláře.
+        CREATE_BOOKING: Vytvořit rezervaci
+        DETAILS: Podrobnosti
+        EDIT: Upravit
+        APPROVE: Schválit
+        REJECT: Zamítnout
+        REVOKE: Odvolat
+        DELETE: Smazat
+        NO_BOOKINGS_TO_SHOW: Žádné rezervace k zobrazení
+        PREVIOUS: Předchozí
+        NEXT: Další
+        FACILITIES_DESCRIPTION: Nastavte otevírací dobu, pravidla rezervací, přístup členů a e-mailová oznámení pro každé zařízení.
+        ADD_FACILITY: Přidat zařízení
+        MODE: Režim
+        APPROVAL: Schvalování
+        AVAILABILITY: Dostupnost
+        LOADING_FACILITIES: Načítání zařízení…
+        FIRST_FACILITY_TITLE: Nastavte své první zařízení
+        FIRST_FACILITY_DESCRIPTION: Zařízení určují, co lze rezervovat, které místnosti jsou dostupné a kdo může požadavky schvalovat.
+        DISABLED: Vypnuto
+        BLOCKS_DESCRIPTION: Zablokujte termíny nebo pravidelně se opakující časy.
+        BLOCK_DATE_TIME: Zablokovat datum a čas
+        BLOCK_DATE_TIME_DESCRIPTION: Jednorázově znepřístupněte zařízení nebo místnost.
+        CHOOSE_FACILITY: Vyberte zařízení
+        ALL_ROOMS: Všechny místnosti
+        TITLE: Název
+        ADD_BLOCK: Přidat blokaci
+        RECURRING_UNAVAILABLE: Pravidelná blokace
+        RECURRING_UNAVAILABLE_DESCRIPTION: Zablokujte stejný den a čas každý týden.
+        WEEKDAY: Den v týdnu
+        ADD_RECURRING_BLOCK: Přidat pravidelnou blokaci
+        CURRENT_BLOCKS: Aktuální blokace
+        CURRENT_BLOCKS_DESCRIPTION: Jednorázové a týdenní blokace dostupnosti.
+        TYPE: Typ
+        WHEN: Kdy
+        LOADING_BLOCKS: Načítání blokací dostupnosti…
+        NO_BLOCKS_CONFIGURED: Nejsou nastaveny žádné blokace dostupnosti.
+        ONE_TIME: Jednorázová
+        WEEKLY: Týdně
+        REMOVE: Odebrat
+        BOOKING_RECORD: ZÁZNAM REZERVACE
+        BOOKING_DETAILS: Podrobnosti rezervace
+        TIME: Čas
+        REQUESTER_NOTE: Poznámka žadatele
+        ADMINISTRATOR_NOTE: Poznámka správce
+        HISTORY: Historie
+        NO_EVENTS_RECORDED: Nejsou zaznamenány žádné události.
+        EMAIL_DELIVERY: Doručování e-mailů
+        TO: pro
+        REDACTED: (skryto)
+        EMAIL_PENDING: Čeká
+        EMAIL_SENT: Odesláno
+        EMAIL_FAILED: Chyba
+        NO_EMAIL_NOTIFICATIONS_QUEUED: Nebyla zařazena žádná e-mailová oznámení.
+        CLOSE: Zavřít
+        FACILITY_SETTINGS: NASTAVENÍ ZAŘÍZENÍ
+        EDIT_FACILITY: Upravit zařízení
+        NEW_FACILITY: Nové zařízení
+        FACILITY_ID: ID zařízení
+        FACILITY_ID_HELP: Malá písmena, číslice a pomlčky. Toto ID již později nelze změnit.
+        NAME: Název
+        DESCRIPTION: Popis
+        TIMEZONE: Časové pásmo
+        BOOKING_MODE: Režim rezervací
+        MODE_FACILITY: Celé zařízení
+        MODE_RESOURCES: Místnosti a zdroje
+        MODE_BOTH: Zařízení nebo místnost
+        DEFAULT_APPROVAL: Výchozí schvalování
+        APPROVAL_MANUAL: Ruční schválení
+        APPROVAL_AUTOMATIC: Automatické schválení
+        ENABLED_FOR_BOOKING: Dostupné pro rezervace
+        AVAILABILITY_HOURS: Otevírací doba
+        ONE_RANGE_PER_LINE: Jeden interval na řádek
+        AVAILABILITY_HELP: Použijte zkratky dnů a 24hodinový čas, například
+        ROOMS_AND_RESOURCES: Místnosti a zdroje
+        ONE_ROOM_PER_LINE: Jedna místnost na řádek
+        ROOMS_HELP_PREFIX: Ponechte sloupce skupin prázdné pro převzetí přístupových pravidel zařízení. Pro vypnutí místnosti nastavte poslední sloupec na
+        ROOMS_HELP_SUFFIX: .
+        BOOKING_RULES: Pravidla rezervací
+        MINIMUM_DURATION: Minimální délka (minuty)
+        MAXIMUM_DURATION: Maximální délka (minuty)
+        BOOKING_INTERVAL: Interval rezervací (minuty)
+        MINIMUM_NOTICE: Minimální předstih (hodiny)
+        BOOKING_HORIZON: Jak dlouho dopředu lze rezervovat (dny)
+        PENDING_BLOCKS: Čekající požadavky vždy blokují zvolený termín
+        MEMBER_ACCESS: Přístup členů
+        ALLOW_GUEST_REQUESTS: Povolit rezervační požadavky hostů
+        ALLOWED_GROUPS: Skupiny Grav oprávněné rezervovat
+        ANY_MEMBER_IF_EMPTY: Prázdné = každý člen
+        COMMA_SEPARATED_GROUPS: Názvy skupin Grav oddělené čárkou.
+        INSTANT_APPROVAL_GROUPS: Skupiny Grav s okamžitým schválením
+        GROUPS_EXAMPLE: "Například: members-facility"
+        INSTANT_APPROVAL_HELP: Oprávnění členové se musí přihlásit. Pravidla pro konkrétní místnost mohou přístup dále omezit.
+        EMAIL_NOTIFICATIONS: E-mailová oznámení
+        SEND_EMAIL_NOTIFICATIONS: Odesílat e-mailová oznámení správcům zařízení
+        FACILITY_ADMIN_EMAILS: E-mailové adresy správců zařízení
+        ADMIN_EMAILS_HELP: Pokud nemá zařízení posílat e-maily správcům, ponechte pole prázdné.
+        NOTIFY_FACILITY_CONTACTS: Upozornit kontakty zařízení
+        NOTIFY_REQUESTER: Upozornit žadatele
+        REQUESTER_REQUIRED_EMAILS_HELP: Ověření e-mailu a zprávy o přijetí a schválení se žadateli posílají vždy. Níže lze zvolit další typy zpráv.
+        CUSTOMIZE_EMAIL_TEMPLATES: Upravit e-mailové šablony
+        EMAIL_TEMPLATE_HELP: "Těla zpráv podporují HTML a vložené obrázky. Hodnoty proměnných se escapují jako HTML; Twig ani PHP se nespouští."
+        EMAIL_SINGLE_LANGUAGE_NOTE: E-mailové šablony jsou společné pro všechny jazyky webu a odesílají se v podobě uložené zde. Jazyk webu ani administrace nevybírá překlad.
+        EMAIL_PLACEHOLDERS: Dostupné proměnné
+        EMAIL_LAYOUT_OVERRIDE: Vlastní HTML vzhled (volitelné)
+        EMAIL_MESSAGES: E-mailové zprávy
+        EMAIL_EVENT_VERIFICATION: Ověření e-mailové adresy
+        EMAIL_EVENT_NEW_REQUEST_ADMIN: Nová žádost pro správce zařízení
+        EMAIL_EVENT_NEW_REQUEST_REQUESTER: Nová žádost pro žadatele
+        EMAIL_EVENT_APPROVAL: Schválení rezervace
+        EMAIL_EVENT_PAYMENT: Platební informace
+        EMAIL_EVENT_REJECTED: Zamítnutá rezervace
+        EMAIL_EVENT_CANCELLED: Zrušená rezervace
+        EMAIL_EVENT_EDITED: Upravená rezervace
+        EMAIL_LAYOUT_HTML: Základní HTML šablona e-mailu
+        EMAIL_LAYOUT_HELP: "Ponechte prázdné pro použití výchozí responzivní šablony. Vložte {{ email.body }} na místo, kam se má vložit zpráva události."
+        VERIFICATION_EMAIL_SUBJECT: Předmět ověřovacího e-mailu
+        PENDING_ADMIN_EMAIL_SUBJECT: Předmět nové žádosti (správci)
+        PENDING_REQUESTER_EMAIL_SUBJECT: Předmět nové žádosti (žadatel)
+        APPROVAL_EMAIL_SUBJECT: Předmět schvalovacího e-mailu
+        PAYMENT_EMAIL_SUBJECT: Předmět e-mailu s platbou
+        VERIFICATION_EMAIL_BODY: Ověřovací zpráva (HTML)
+        PENDING_ADMIN_EMAIL_BODY: Zpráva o nové žádosti pro správce (HTML)
+        PENDING_REQUESTER_EMAIL_BODY: Zpráva o nové žádosti pro žadatele (HTML)
+        APPROVAL_EMAIL_BODY_HTML: Schvalovací zpráva (HTML)
+        PAYMENT_EMAIL_BODY_HTML: Zpráva s platebními informacemi (HTML)
+        PAYMENT_EMAIL_HTML_HELP: Lze vložit HTML a obrázky data URI, například data:image/png;base64,… . Proměnné jsou automaticky escapovány.
+        REJECTED_EMAIL_SUBJECT: Předmět e-mailu o zamítnuté žádosti
+        REJECTED_EMAIL_BODY: Zpráva o zamítnuté žádosti (HTML)
+        CANCELLED_EMAIL_SUBJECT: Předmět e-mailu o zrušené rezervaci
+        CANCELLED_EMAIL_BODY: Zpráva o zrušené rezervaci (HTML)
+        EDITED_EMAIL_SUBJECT: Předmět e-mailu o změně rezervace
+        EDITED_EMAIL_BODY: Zpráva o změně rezervace (HTML)
+        SEND_PAYMENT_INFORMATION: Odeslat platební informace
+        PAYMENT_EMAIL_SENT: E-mail s platebními informacemi byl odeslán.
+        SAVE_FACILITY: Uložit zařízení
+        CANCEL: Zrušit
+        EDIT_BOOKING: Upravit rezervaci
+        ROOM_OR_RESOURCE: Místnost nebo zdroj
+        CHOOSE_ROOM: Vyberte místnost
+        FACILITY_BOOKING: Rezervace celého zařízení
+        REQUESTER_NAME: Jméno žadatele
+        REQUESTER_EMAIL: E-mail žadatele
+        PHONE: Telefon
+        PENDING_APPROVAL: Čeká na schválení
+        SAVE_BOOKING: Uložit rezervaci
+        ADD_FACILITY_BEFORE_BOOKING: Před vytvořením rezervace přidejte zařízení.
+        FACILITY_SAVED: Zařízení bylo uloženo.
+        FACILITY_DELETED: Zařízení bylo smazáno.
+        BOOKING_CREATED: Rezervace byla vytvořena.
+        BOOKING_UPDATED: Rezervace byla upravena.
+        BOOKING_STATUS_UPDATED: Stav rezervace byl aktualizován.
+        BOOKING_DELETED: Rezervace byla smazána.
+        INVALID_AVAILABILITY_WINDOW: Každý interval dostupnosti musí obsahovat začátek a konec oddělené pomlčkou.
+        ROOM_ID_AND_NAME_REQUIRED: Každá místnost musí mít ID a název oddělené znakem |.
+        ENTER_START_AND_END: Vyplňte čas začátku i konce.
+        DAYLIGHT_SAVING_GAP: Zadaný místní čas neexistuje kvůli změně letního času.
+        DELETE_FACILITY_TITLE: Smazat zařízení?
+        DELETE_FACILITY_MESSAGE: Zařízení s rezervacemi nebo historií dostupnosti nelze smazat.
+        DELETE_FACILITY: Smazat zařízení
+        APPROVE_BOOKING_TITLE: Schválit rezervaci?
+        APPROVE_BOOKING_MESSAGE: Tímto schválíte vybranou rezervaci.
+        REJECT_BOOKING_TITLE: Zamítnout rezervaci?
+        REJECT_BOOKING_MESSAGE: Tímto zamítnete vybranou rezervaci.
+        REVOKE_BOOKING_TITLE: Odvolat rezervaci?
+        REVOKE_BOOKING_MESSAGE: Tímto odvoláte vybranou rezervaci.
+        DELETE_BOOKING_TITLE: Smazat rezervaci natrvalo?
+        DELETE_BOOKING_MESSAGE: Rezervace a údaje žadatele budou odstraněny. Tuto akci nelze vrátit.
+        DELETE_BOOKING: Smazat rezervaci
+        IMPORT_LEGACY_TITLE: Importovat starší data rezervací?
+        IMPORT_LEGACY_MESSAGE: Importujte existující data rezervací YAML a JSON do SQLite. Původní soubory zůstanou zachovány.
+        IMPORT_DATA: Importovat data
+        BLOCK_ADDED: Blokace dostupnosti byla přidána.
+        RECURRING_BLOCK_ADDED: Pravidelná blokace dostupnosti byla přidána.
+        REMOVE_BLOCK_TITLE: Odebrat blokaci dostupnosti?
+        REMOVE_BLOCK_MESSAGE: Toto období již nebude bránit vytváření rezervací.
+        REMOVE_BLOCK: Odebrat blokaci
+        LOAD_FACILITIES_FAILED: "Zařízení se nepodařilo načíst:"
+        LOAD_BOOKINGS_FAILED: "Rezervace se nepodařilo načíst:"
+        LOAD_BLOCKS_FAILED: "Blokace dostupnosti se nepodařilo načíst:"
+        LOAD_MIGRATION_FAILED: "Starší data rezervací se nepodařilo zkontrolovat:"
+        BY: uživatel
+        EVENT_CREATED: Vytvořeno
+        EVENT_CONFIRMED: Schváleno
+        EVENT_REJECTED: Zamítnuto
+        EVENT_CANCELLED: Zrušeno
+        EVENT_EDITED: Upraveno
+        EVENT_EMAIL_VERIFICATION: Ověření e-mailu
+        EVENT_EMAIL_VERIFIED: E-mail ověřen
+        EVENT_VERIFICATION_CONFLICT: Zrušeno kvůli změně dostupnosti
+        EVENT_PAYMENT_INFORMATION: Platební informace
+        EVENT_DELETED: Smazáno
+        PAGE_BOOKING_FORM: Rezervační formulář
+    PUBLIC:
+      TITLE: Rezervace zařízení
+      SELECT_FACILITY: Vyberte zařízení
+      SELECT_RESOURCE: Vyberte místnost
+      SELECT_DATE: Vyberte datum
+      END_DATE: Datum konce
+      SELECT_TIME: Vyberte čas
+      CHOOSE_DATES: Vyberte dostupný termín
+      CALENDAR_HINT: Vyberte zařízení a dostupné datum. Kalendář zobrazuje pouze dostupnost, bez údajů o rezervacích.
+      CALENDAR_HINT_SINGLE: Vyberte dostupný termín. Kalendář zobrazuje pouze dostupnost, bez údajů o rezervacích.
+      AVAILABILITY: Dostupnost
+      AVAILABLE: Dostupné
+      UNAVAILABLE: Obsazené
+      SELECTED: Vybráno
+      CHECK_IN: Začátek
+      CHECK_OUT: Konec
+      CHECK_OUT_BOUNDARY_NOTE: Datum konce určuje konec rezervace a do rezervovaných dnů se nezapočítává.
+      CHECKOUT_OPTION: Toto datum lze použít pouze jako datum konce rezervace.
+      PREVIOUS_MONTH: Předchozí měsíc
+      NEXT_MONTH: Další měsíc
+      SELECT_CHECK_IN: Vyberte datum začátku.
+      SELECT_CHECK_OUT: Vyberte pozdější datum konce.
+      SELECT_PERIOD: Časový úsek
+      SELECT_PERIOD_PROMPT: Vyberte úsek
+      LOADING_AVAILABILITY: Načítání dostupných termínů…
+      AVAILABILITY_LOAD_FAILED: Dostupné termíny se nepodařilo načíst. Zkuste to znovu.
+      RETRY: Zkusit znovu
+      RANGE_UNAVAILABLE: Některé dny ve zvoleném období nejsou dostupné. Vyberte jiné období.
+      MAKE_RESERVATION: Pokračovat k rezervaci
+      BOOKING_DETAILS: Vaše údaje
+      CHANGE_DATES: Změnit termín
+      BOOKING_SUMMARY: Vybraný termín
+      SUBMITTING_BOOKING: Odesílání rezervace…
+      SLOT_UNAVAILABLE: Tento termín již není dostupný. Vyberte jiné datum.
+      SUBMIT_FAILURE: Rezervaci se nepodařilo odeslat. Zkuste to prosím znovu.
+      TIME_CHANGE_DATE: Vybraný čas ovlivňuje změna času. Zvolte jiné datum.
+      YOUR_NAME: Vaše jméno
+      YOUR_EMAIL: Váš e-mail
+      YOUR_PHONE: Telefon (nepovinné)
+      YOUR_NOTES: Doplňující poznámka (nepovinné)
+      SUBMIT_BOOKING: Odeslat žádost o rezervaci
+      NO_FACILITIES: Momentálně nejsou dostupná žádná zařízení k rezervaci.
+      NO_RESOURCES: Pro toto zařízení nejsou dostupné žádné místnosti.
+      NO_SLOTS_AVAILABLE: Pro zvolené datum nejsou dostupné žádné termíny.
+      BOOKING_SUCCESS: Žádost o rezervaci byla odeslána.
+      BOOKING_PENDING: Žádost o rezervaci byla odeslána a čeká na schválení.
+      BOOKING_CONFIRMED: Rezervace byla potvrzena.
+      VERIFY_EMAIL_TITLE: Ověření e-mailové adresy
+      VERIFY_EMAIL_HINT: Zadejte šestimístný kód, který jsme poslali na váš e-mail. Platnost kódu je 24 hodin.
+      VERIFICATION_CODE: Ověřovací kód
+      VERIFY_EMAIL: Ověřit a dokončit rezervaci
+      RESEND_CODE: Poslat nový kód
+      VERIFICATION_SENT: Zkontrolujte e-mail, poslali jsme vám šestimístný ověřovací kód. Po ověření bude žádost předána ke schválení.
+      VERIFICATION_EMAIL_FAILED: Žádost byla vytvořena, ale ověřovací e-mail se nepodařilo odeslat. Zkuste za chvíli poslat nový kód.
+      VERIFICATION_CODE_INVALID: Kód je neplatný nebo jeho platnost vypršela. Zkontrolujte jej a zkuste to znovu.
+      VERIFICATION_SUCCESS: E-mailová adresa byla ověřena a rezervace je dokončena.
+      VERIFICATION_RESENT: Poslali jsme vám nový ověřovací kód. Platí 24 hodin.
+  ICU:
+    PLUGIN_BOOKING:
+      ADMIN:
+        UI:
+          LEGACY_COUNTS: "Nalezena zařízení: {facilities}; rezervace: {bookings}; blokace: {blocks}; pravidelné blokace: {recurring}."
+          LEGACY_IMPORTED: "Import dokončen — zařízení: {facilities}, rezervace: {bookings}, blokace: {blocks}."
+          BOOKINGS_PAGINATION: "Zobrazeno {first}–{last} z {total} rezervací"
+          EVENT_BY_ACTOR: "{action}: {actor}"

@@ -1,0 +1,106 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ 'PLUGIN_BOOKING.ADMIN.BOOKING_DETAILS'|t }}{% endblock %}
+
+{% block content %}
+<div class="booking-admin">
+    <div class="booking-header">
+        <h1><i class="fa fa-calendar-check"></i> {{ 'PLUGIN_BOOKING.ADMIN.BOOKING_DETAILS'|t }}</h1>
+        <a href="{{ admin_route('/booking') }}" class="btn btn-secondary">
+            <i class="fa fa-arrow-left"></i> {{ 'PLUGIN_BOOKING.ADMIN.ACTION_BACK'|t }}
+        </a>
+    </div>
+
+    {% if booking %}
+        <div class="booking-details">
+            <div class="detail-section">
+                <h3>Booking Information</h3>
+                <dl class="detail-list">
+                    <dt>Booking ID:</dt>
+                    <dd><code>{{ booking.id }}</code></dd>
+
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.FACILITY'|t }}:</dt>
+                    <dd>{{ booking.facility_name }}</dd>
+
+                    {% if booking.resource_id %}
+                        <dt>{{ 'PLUGIN_BOOKING.ADMIN.RESOURCE'|t }}:</dt>
+                        <dd>{{ booking.resource_name }}</dd>
+                    {% endif %}
+
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.START_TIME'|t }}:</dt>
+                    <dd>{{ booking.start|date('Y-m-d H:i') }} ({{ booking.timezone }})</dd>
+
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.END_TIME'|t }}:</dt>
+                    <dd>{{ booking.end|date('Y-m-d H:i') }} ({{ booking.timezone }})</dd>
+
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.STATUS'|t }}:</dt>
+                    <dd>
+                        <span class="badge badge-{{ booking.status }}">
+                            {{ ('PLUGIN_BOOKING.ADMIN.STATUS_' ~ booking.status|upper)|t }}
+                        </span>
+                    </dd>
+
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.CREATED'|t }}:</dt>
+                    <dd>{{ booking.created_at|date('Y-m-d H:i:s') }}</dd>
+
+                    {% if booking.updated_at %}
+                        <dt>{{ 'PLUGIN_BOOKING.ADMIN.UPDATED'|t }}:</dt>
+                        <dd>{{ booking.updated_at|date('Y-m-d H:i:s') }}</dd>
+                    {% endif %}
+                </dl>
+            </div>
+
+            <div class="detail-section">
+                <h3>Customer Information</h3>
+                <dl class="detail-list">
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.CUSTOMER_NAME'|t }}:</dt>
+                    <dd>{{ booking.customer_name }}</dd>
+
+                    <dt>{{ 'PLUGIN_BOOKING.ADMIN.CUSTOMER_EMAIL'|t }}:</dt>
+                    <dd><a href="mailto:{{ booking.customer_email }}">{{ booking.customer_email }}</a></dd>
+
+                    {% if booking.customer_phone %}
+                        <dt>{{ 'PLUGIN_BOOKING.ADMIN.CUSTOMER_PHONE'|t }}:</dt>
+                        <dd><a href="tel:{{ booking.customer_phone }}">{{ booking.customer_phone }}</a></dd>
+                    {% endif %}
+
+                    {% if booking.customer_note %}
+                        <dt>{{ 'PLUGIN_BOOKING.ADMIN.NOTES'|t }}:</dt>
+                        <dd>{{ booking.customer_note|nl2br }}</dd>
+                    {% endif %}
+                </dl>
+            </div>
+
+            {% if booking.admin_note %}
+                <div class="detail-section">
+                    <h3>{{ 'PLUGIN_BOOKING.ADMIN.ADMIN_NOTES'|t }}</h3>
+                    <p>{{ booking.admin_note|nl2br }}</p>
+                </div>
+            {% endif %}
+
+            <div class="detail-section booking-actions">
+                <h3>Actions</h3>
+                {% if booking.status == 'pending' %}
+                    <button class="btn btn-success" data-action="confirm" data-booking-id="{{ booking.id }}">
+                        <i class="fa fa-check"></i> {{ 'PLUGIN_BOOKING.ADMIN.ACTION_CONFIRM'|t }}
+                    </button>
+                    <button class="btn btn-danger" data-action="reject" data-booking-id="{{ booking.id }}">
+                        <i class="fa fa-times"></i> {{ 'PLUGIN_BOOKING.ADMIN.ACTION_REJECT'|t }}
+                    </button>
+                {% endif %}
+
+                {% if booking.status in ['pending', 'confirmed'] %}
+                    <button class="btn btn-warning" data-action="cancel" data-booking-id="{{ booking.id }}">
+                        <i class="fa fa-ban"></i> {{ 'PLUGIN_BOOKING.ADMIN.ACTION_CANCEL'|t }}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-error">
+            <i class="fa fa-exclamation-circle"></i>
+            {{ 'PLUGIN_BOOKING.ERRORS.BOOKING_NOT_FOUND'|t }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

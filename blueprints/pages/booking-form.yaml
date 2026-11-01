@@ -1,0 +1,6 @@
+title: PLUGIN_BOOKING.ADMIN.UI.PAGE_BOOKING_FORM
+
+extends@:
+  type: default
+  context: blueprints://pages
+

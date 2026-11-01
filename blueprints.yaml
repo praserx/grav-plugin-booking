@@ -1,0 +1,32 @@
+name: booking
+slug: booking
+type: plugin
+version: 0.2.0
+description: A Grav plugin for facility and room bookings, with availability calendars, admin management, email verification, and notifications. 
+icon: calendar-check
+author:
+  name: Praser
+  email: praserx@gmail.com
+  url: https://github.com/praserx
+homepage: https://github.com/praserx/grav-plugin-booking
+keywords: [booking, facilities, rooms, nonprofit]
+bugs: https://github.com/praserx/grav-plugin-booking/issues
+license: MIT
+dependencies:
+  - { name: grav, version: '>=2.0.0' }
+  - { name: api, version: '>=1.0.24' }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_BOOKING.CONFIG.ENABLED
+      help: PLUGIN_BOOKING.CONFIG.ENABLED_HELP
+      highlight: 1
+      default: true
+      options:
+        1: PLUGIN_ADMIN.YES
+        0: PLUGIN_ADMIN.NO
+      validate:
+        type: bool

@@ -1,0 +1,23 @@
+# Dependencies
+/node_modules/
+/vendor/
+
+# Local Grav data and runtime files
+/cache/
+/logs/
+/tmp/
+/user/data/booking/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Test and local environment files
+/.phpunit.cache/
+.env
+.env.*
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -46,9 +46,11 @@ and when a request is submitted.
 ## Publish a booking form
 
 In **Admin Next → Pages**, create a page and select **Booking Form** as its
-page type. Publish the page and link to it from your site navigation as needed.
-The form displays the enabled facilities and resources that the visitor is
-allowed to book.
+page type. In the page's Booking tab, choose the facility this page represents.
+Create a separate page for each facility, then publish the pages and link to
+them from your site navigation. Visitors see only that facility's calendar and
+booking form, so they do not have to select a facility themselves. The form
+still respects facility and resource access rules for each visitor.
 
 The equivalent page header is:
 
@@ -56,10 +58,16 @@ The equivalent page header is:
 ---
 title: Book a facility
 template: booking-form
+booking_facility_id: example-facility
 visible: true
 routable: true
 ---
 ```
+
+Choose the facility in Admin Next rather than typing its ID; the example ID
+above is the facility's ID from **Booking → Facilities**. Existing Booking Form
+pages without this setting continue to show the facilities available to each
+visitor.
 
 Visitors choose an available date and time, enter their contact details, and
 receive a six-digit email verification code. The code expires after 24 hours.

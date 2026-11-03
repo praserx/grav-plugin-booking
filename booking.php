@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
+use Grav\Common\Data\Blueprint;
 use Grav\Plugin\Booking\Api\AdminBookingController;
 use Grav\Plugin\Booking\Api\PublicBookingController;
+use Grav\Plugin\Booking\Blueprint\BookingPageOptions;
 use Grav\Plugin\Booking\ServiceLocator;
 use RocketTheme\Toolbox\Event\Event;
 
@@ -47,6 +49,8 @@ class BookingPlugin extends Plugin
      */
     public function onPluginsInitialized(): void
     {
+        Blueprint::addAllowedDynamicCallable(BookingPageOptions::class . '::facilityOptions');
+
         // Initialize the service locator with facility configuration
         $facilityConfig = $this->config->get('plugins.booking.facilities', []);
         $dataPath = $this->grav['locator']->findResource('user://data/booking', true, true);
@@ -140,6 +144,11 @@ class BookingPlugin extends Plugin
     public function onTwigSiteVariables(): void
     {
         $facilities = [];
+        $page = $this->grav['page'] ?? null;
+        $pageHeader = is_object($page) && method_exists($page, 'header') ? $page->header() : null;
+        $pageFacilityId = is_object($pageHeader)
+            ? trim((string) ($pageHeader->booking_facility_id ?? ''))
+            : '';
         $accessPolicy = new \Grav\Plugin\Booking\Service\BookingAccessPolicy();
         $user = $this->grav['user'] ?? null;
         $groups = [];
@@ -148,6 +157,9 @@ class BookingPlugin extends Plugin
         }
 
         foreach (ServiceLocator::instance()->getCatalog()->all() as $facility) {
+            if ($pageFacilityId !== '' && $facility->id !== $pageFacilityId) {
+                continue;
+            }
             if (!$facility->enabled || !$accessPolicy->canRequest($facility, null, $groups)) {
                 continue;
             }

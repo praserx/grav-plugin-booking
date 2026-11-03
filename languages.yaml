@@ -352,6 +352,7 @@ en:
         EVENT_PAYMENT_INFORMATION: Payment information
         EVENT_DELETED: Deleted
         PAGE_BOOKING_FORM: Booking form
+        BOOKING_PAGE_FACILITY_HELP: Choose the facility shown on this page. Visitors will see its calendar and won't need to select a facility.
 
     # Public booking form
     PUBLIC:
@@ -754,6 +755,7 @@ cs:
         EVENT_PAYMENT_INFORMATION: Platební informace
         EVENT_DELETED: Smazáno
         PAGE_BOOKING_FORM: Rezervační formulář
+        BOOKING_PAGE_FACILITY_HELP: Vyberte zařízení pro tuto stránku. Návštěvníci uvidí jeho kalendář a nebudou muset zařízení vybírat.
     PUBLIC:
       TITLE: Rezervace zařízení
       SELECT_FACILITY: Vyberte zařízení

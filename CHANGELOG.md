@@ -4,3 +4,4 @@
 
 1. [](#new)
    - Initial implementation of the booking plugin.
+   - Add facility-specific booking pages with a calendar and reservation form.

@@ -56,8 +56,9 @@ with `bin/gpm install booking`.
 2. In Admin Next, open **Booking** and add a facility. Set its timezone,
    booking mode, approval policy, availability, and booking rules. Add resources
    if the facility is bookable by room or resource.
-3. In **Admin Next → Pages**, create a page and choose the **Booking Form** page
-   type. Give it a title and publish it.
+3. In **Admin Next → Pages**, create a **Booking Form** page and choose its
+   facility in the page's Booking tab. Create one page per facility; visitors
+   will see that facility's calendar and form without choosing a facility.
 4. Submit a test request through the page and verify the email address with the
    six-digit code sent to the requester.
 

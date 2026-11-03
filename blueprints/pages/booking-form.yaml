@@ -4,3 +4,21 @@ extends@:
   type: default
   context: blueprints://pages
 
+form:
+  fields:
+    tabs:
+      fields:
+        booking:
+          type: tab
+          title: PLUGIN_BOOKING.ADMIN.UI.PAGE_BOOKING_FORM
+          fields:
+            header.booking_facility_id:
+              type: select
+              label: PLUGIN_BOOKING.ADMIN.FACILITY
+              help: PLUGIN_BOOKING.ADMIN.UI.BOOKING_PAGE_FACILITY_HELP
+              data-options@: '\Grav\Plugin\Booking\Blueprint\BookingPageOptions::facilityOptions'
+              options:
+                '': PLUGIN_BOOKING.ADMIN.UI.CHOOSE_FACILITY
+              validate:
+                required: true
+

@@ -50,7 +50,9 @@ page type. In the page's Booking tab, choose the facility this page represents.
 Create a separate page for each facility, then publish the pages and link to
 them from your site navigation. Visitors see only that facility's calendar and
 booking form, so they do not have to select a facility themselves. The form
-still respects facility and resource access rules for each visitor.
+still respects facility and resource access rules for each visitor. Use the
+page content to add a short facility description, practical information, and
+links to related pages; it appears above the booking flow.
 
 The equivalent page header is:
 

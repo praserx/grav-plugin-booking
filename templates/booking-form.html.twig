@@ -3,13 +3,14 @@
 {% set facilities = booking_facilities|default([]) %}
 {% set requester = booking_requester|default({}) %}
 {% set single_facility = facilities|length == 1 ? facilities|first : null %}
+{% set booking_heading = single_facility ? single_facility.name : page.title|default(site.title) %}
 
-{% block title %}{{ page.title|default(site.title)|e }}{% endblock %}
+{% block title %}{{ booking_heading|e }}{% endblock %}
 
 {% block content %}
 <div class="booking-public">
   <header class="booking-header">
-    {% if page.title %}<h1>{{ page.title|e }}</h1>{% endif %}
+    {% if booking_heading %}<h1>{{ booking_heading|e }}</h1>{% endif %}
     {% if page.content %}<div class="booking-page-content">{{ page.content|raw }}</div>{% endif %}
   </header>
 
@@ -25,6 +26,20 @@
         <label for="booking-website">Leave this field empty</label>
         <input type="text" id="booking-website" name="website" tabindex="-1" autocomplete="off">
       </div>
+
+      <nav class="booking-progress" aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.BOOKING_PROGRESS'|t }}">
+        <ol>
+          <li class="is-current" aria-current="step" data-booking-progress-step="1">
+            <span class="booking-progress-number">1</span><span>{{ 'PLUGIN_BOOKING.PUBLIC.STEP_DATES'|t }}</span>
+          </li>
+          <li data-booking-progress-step="2">
+            <span class="booking-progress-number">2</span><span>{{ 'PLUGIN_BOOKING.PUBLIC.STEP_DETAILS'|t }}</span>
+          </li>
+          <li data-booking-progress-step="3">
+            <span class="booking-progress-number">3</span><span>{{ 'PLUGIN_BOOKING.PUBLIC.STEP_VERIFY'|t }}</span>
+          </li>
+        </ol>
+      </nav>
 
       <section class="booking-step" data-booking-selection>
       {% if single_facility %}
@@ -67,25 +82,40 @@
               <span><i class="booking-dot booking-dot-unavailable"></i>{{ 'PLUGIN_BOOKING.PUBLIC.UNAVAILABLE'|t }}</span>
             </div>
           </div>
-          <div class="booking-calendar-controls">
-            <button type="button" class="btn btn-secondary booking-month-button" data-calendar-previous aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.PREVIOUS_MONTH'|t }}">‹</button>
-            <h3 data-calendar-month aria-live="polite"></h3>
-            <button type="button" class="btn btn-secondary booking-month-button" data-calendar-next aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.NEXT_MONTH'|t }}">›</button>
+          <div class="booking-calendar-layout">
+            <div class="booking-calendar-main">
+              <div class="booking-calendar-controls">
+                <button type="button" class="btn btn-secondary booking-month-button" data-calendar-previous aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.PREVIOUS_MONTH'|t }}">‹</button>
+                <h3 data-calendar-month aria-live="polite"></h3>
+                <button type="button" class="btn btn-secondary booking-month-button" data-calendar-next aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.NEXT_MONTH'|t }}">›</button>
+              </div>
+              <div class="booking-calendar-grid" role="grid" aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.CHOOSE_DATES'|t }}">
+                <div class="booking-weekdays" data-calendar-weekdays role="row"></div>
+                <div class="booking-days" data-calendar-days role="rowgroup"></div>
+              </div>
+            </div>
+
+            <aside class="booking-selection-panel" aria-labelledby="booking-selection-title" data-selection-panel>
+              <h3 id="booking-selection-title">{{ 'PLUGIN_BOOKING.PUBLIC.YOUR_SELECTION'|t }}</h3>
+              <dl class="booking-selection-summary" data-selection-summary hidden>
+                <div>
+                  <dt>{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_IN'|t }}</dt>
+                  <dd data-selected-start></dd>
+                </div>
+                <div data-selected-end-wrap hidden>
+                  <dt>{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_OUT'|t }}</dt>
+                  <dd data-selected-end></dd>
+                </div>
+              </dl>
+              <p class="booking-muted booking-checkout-note" data-checkout-note hidden>{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_OUT_BOUNDARY_NOTE'|t }}</p>
+              <p class="booking-calendar-status" data-calendar-status aria-live="polite"></p>
+              <button type="button" class="btn btn-secondary booking-calendar-retry" data-calendar-retry hidden>{{ 'PLUGIN_BOOKING.PUBLIC.RETRY'|t }}</button>
+              <button type="button" class="btn btn-primary booking-continue" data-make-reservation disabled>
+                <span class="booking-continue-label-wide">{{ 'PLUGIN_BOOKING.PUBLIC.CONTINUE_TO_DETAILS'|t }}</span>
+                <span class="booking-continue-label-compact">{{ 'PLUGIN_BOOKING.PUBLIC.CONTINUE'|t }}</span>
+              </button>
+            </aside>
           </div>
-          <div class="booking-calendar-grid" role="grid" aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.CHOOSE_DATES'|t }}">
-            <div class="booking-weekdays" data-calendar-weekdays role="row"></div>
-            <div class="booking-days" data-calendar-days role="rowgroup"></div>
-          </div>
-          <p class="booking-calendar-status" data-calendar-status aria-live="polite"></p>
-          <button type="button" class="btn btn-secondary" data-calendar-retry hidden>{{ 'PLUGIN_BOOKING.PUBLIC.RETRY'|t }}</button>
-          <p class="booking-muted booking-checkout-note" data-checkout-note hidden>{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_OUT_BOUNDARY_NOTE'|t }}</p>
-          <div class="booking-selection-summary" data-selection-summary hidden>
-            <span><strong>{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_IN'|t }}:</strong> <span data-selected-start></span></span>
-            <span data-selected-end-wrap hidden><strong>{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_OUT'|t }}:</strong> <span data-selected-end></span></span>
-          </div>
-          <button type="button" class="btn btn-primary" data-make-reservation disabled>
-            {{ 'PLUGIN_BOOKING.PUBLIC.MAKE_RESERVATION'|t }}
-          </button>
         </section>
       </section>
 
@@ -148,10 +178,20 @@
 .booking-trap { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 .booking-public { --booking-green:#218838; --booking-red:#a8323e; --booking-border:rgba(127,127,127,.28); max-width:76rem; margin-inline:auto; }
 .booking-public [hidden] { display:none !important; }
-.booking-step { margin-block:1.5rem; }
+.booking-header { margin-block:clamp(2rem,6vw,4rem) 2rem; }
+.booking-header h1 { margin:0 0 .75rem; }
+.booking-page-content { max-width:58rem; font-size:1.05rem; line-height:1.65; }
 .booking-page-content:empty { display:none; }
+.booking-page-content > :last-child { margin-bottom:0; }
+.booking-progress { margin:1.5rem 0 1rem; }
+.booking-progress ol { display:flex; gap:.6rem; list-style:none; margin:0; padding:0; max-width:58rem; }
+.booking-progress li { display:flex; flex:1; align-items:center; gap:.6rem; padding:.55rem .75rem; border:1px solid var(--booking-border); border-radius:.55rem; opacity:.68; }
+.booking-progress li.is-current { border-color:var(--booking-primary,#6f42c1); background:color-mix(in srgb,var(--booking-primary,#6f42c1) 8%,transparent); opacity:1; font-weight:700; }
+.booking-progress li.is-complete { opacity:.85; }
+.booking-progress-number { display:grid; width:1.65rem; height:1.65rem; flex:0 0 1.65rem; place-items:center; border:1px solid currentColor; border-radius:50%; font-size:.82rem; }
+.booking-step { margin-block:1.5rem; }
 .booking-choice-row { display:grid; grid-template-columns:repeat(2,minmax(14rem,1fr)); gap:1rem; max-width:52rem; }
-.booking-calendar { margin-top:1.75rem; padding:1.25rem; border:1px solid var(--booking-border); border-radius:.75rem; }
+.booking-calendar { margin-top:1.25rem; padding:1.15rem; border:1px solid var(--booking-border); border-radius:.75rem; }
 .booking-calendar-heading,.booking-calendar-controls,.booking-details-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
 .booking-calendar-heading h2,.booking-details-heading h2 { margin:0 0 .35rem; font-size:1.3rem; }
 .booking-muted { opacity:.72; margin:.25rem 0; }
@@ -160,26 +200,54 @@
 .booking-dot { width:.7rem; height:.7rem; display:inline-block; border-radius:50%; }
 .booking-dot-available { background:var(--booking-green); }
 .booking-dot-unavailable { background:var(--booking-red); }
+.booking-calendar-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(14rem,17rem); gap:1.25rem; align-items:start; margin-top:.75rem; }
+.booking-calendar-main { min-width:0; }
 .booking-calendar-controls { justify-content:center; margin:1rem 0; }
 .booking-calendar-controls h3 { min-width:12rem; margin:0; text-align:center; }
 .booking-month-button { min-width:2.75rem; font-size:1.3rem; line-height:1; }
-.booking-calendar-grid { overflow-x:auto; }
-.booking-weekdays,.booking-days { min-width:38rem; display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:.4rem; }
+.booking-calendar-grid { min-width:0; }
+.booking-weekdays,.booking-days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:.35rem; }
 .booking-weekdays { margin-bottom:.4rem; }
 .booking-weekday { padding:.5rem .25rem; text-align:center; font-size:.82rem; font-weight:600; opacity:.75; }
-.booking-day { min-height:5rem; padding:.55rem; text-align:left; border:1px solid var(--booking-border); border-radius:.45rem; color:inherit; background:transparent; cursor:pointer; }
+.booking-day { position:relative; min-height:3.9rem; padding:.45rem; text-align:left; border:1px solid var(--booking-border); border-radius:.45rem; color:inherit; background:transparent; cursor:pointer; }
 .booking-day:hover:not(:disabled) { outline:2px solid currentColor; outline-offset:1px; }
+.booking-day:focus-visible { outline:3px solid var(--booking-primary,#6f42c1); outline-offset:2px; z-index:1; }
 .booking-day:disabled { cursor:not-allowed; opacity:.55; }
 .booking-day-available { background:color-mix(in srgb,var(--booking-green) 13%,transparent); border-color:color-mix(in srgb,var(--booking-green) 55%,var(--booking-border)); }
 .booking-day-unavailable { background:color-mix(in srgb,var(--booking-red) 12%,transparent); border-color:color-mix(in srgb,var(--booking-red) 55%,var(--booking-border)); }
-.booking-day-other-month { opacity:.55; }
-.booking-day-selected,.booking-day-in-range { outline:2px solid var(--booking-primary,#6f42c1); outline-offset:-2px; }
+.booking-day-in-range { background:color-mix(in srgb,var(--booking-primary,#6f42c1) 18%,Canvas); border-color:color-mix(in srgb,var(--booking-primary,#6f42c1) 58%,var(--booking-border)); }
+.booking-day-selected { background:var(--booking-primary,#6f42c1); border-color:var(--booking-primary,#6f42c1); color:#fff; box-shadow:inset 0 0 0 2px Canvas; }
+.booking-day-selected .booking-day-state { color:#fff; }
+.booking-day-other-month:not(.booking-day-selected):not(.booking-day-in-range) { opacity:.55; }
 .booking-day-number { display:block; font-weight:700; }
-.booking-day-state { display:block; margin-top:.55rem; font-size:.75rem; }
+.booking-day-selection-label { display:block; margin-top:.12rem; font-size:.58rem; line-height:1; font-weight:700; }
+.booking-day-state { display:block; margin-top:.2rem; font-size:.7rem; }
+.booking-selection-panel { position:sticky; top:5.25rem; align-self:start; padding:1rem; border:1px solid var(--booking-border); border-radius:.7rem; background:color-mix(in srgb,Canvas 96%,var(--booking-primary,#6f42c1) 4%); color:CanvasText; }
+.booking-selection-panel h3 { margin:0 0 .9rem; font-size:1.1rem; }
+.booking-selection-summary { display:grid; gap:.75rem; margin:0 0 .9rem; }
+.booking-selection-summary > div { display:flex; flex-direction:column; gap:.12rem; }
+.booking-selection-summary dt { font-size:.82rem; opacity:.72; }
+.booking-selection-summary dd { margin:0; font-size:1.15rem; font-weight:700; }
 .booking-calendar-status { min-height:1.5rem; margin:.75rem 0; }
-.booking-checkout-note { font-size:.9rem; }
-.booking-selection-summary { display:flex; gap:1.5rem; flex-wrap:wrap; margin:1rem 0; }
-.booking-details { padding:1.25rem; border:1px solid var(--booking-border); border-radius:.75rem; }
+.booking-checkout-note { font-size:.82rem; line-height:1.4; margin:.5rem 0 1rem; }
+.booking-selection-panel .btn { width:100%; }
+.booking-calendar-retry { margin-bottom:.5rem; }
+.booking-continue { white-space:normal; }
+.booking-continue-label-compact { display:none; }
+.booking-public.has-floating-selection { padding-bottom:8rem; }
+.booking-selection-panel.is-floating { position:fixed; z-index:1000; left:50%; bottom:max(.75rem,env(safe-area-inset-bottom)); width:min(calc(100vw - 1.5rem),40rem); transform:translateX(-50%); display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:.2rem 1rem; padding:.7rem .85rem; background:Canvas; box-shadow:0 -.65rem 2rem rgba(0,0,0,.18); }
+.booking-selection-panel.is-floating h3 { grid-column:1; margin:0; font-size:.82rem; }
+.booking-selection-panel.is-floating .booking-selection-summary { grid-column:1; grid-row:2; display:flex; flex-wrap:wrap; gap:.15rem .8rem; margin:0; }
+.booking-selection-panel.is-floating .booking-selection-summary > div { gap:0; }
+.booking-selection-panel.is-floating .booking-selection-summary dt { font-size:.68rem; line-height:1.15; }
+.booking-selection-panel.is-floating .booking-selection-summary dd { font-size:.92rem; line-height:1.25; }
+.booking-selection-panel.is-floating .booking-calendar-status { grid-column:1; grid-row:3; min-height:0; margin:.2rem 0 0; font-size:.78rem; }
+.booking-selection-panel.is-floating .booking-checkout-note { display:none; }
+.booking-selection-panel.is-floating .booking-continue { grid-column:2; grid-row:1 / span 2; width:auto; white-space:nowrap; }
+.booking-selection-panel.is-floating .booking-continue-label-wide { display:none; }
+.booking-selection-panel.is-floating .booking-continue-label-compact { display:inline; }
+.booking-selection-panel.is-floating .booking-calendar-retry { grid-column:2; grid-row:3; margin:0; }
+.booking-details { scroll-margin-top:5.5rem; padding:1.25rem; border:1px solid var(--booking-border); border-radius:.75rem; }
 .booking-details-heading { padding-bottom:1rem; margin-bottom:1rem; border-bottom:1px solid var(--booking-border); }
 .booking-details-summary { margin:.35rem 0 0; opacity:.8; }
 .booking-form-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 1rem; }
@@ -187,14 +255,35 @@
 .booking-verification-actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem; }
 .booking-form-fields .form-group:last-child { grid-column:1/-1; }
 .booking-messages:empty { display:none; }
+@media(max-width:900px) {
+  .booking-calendar-layout { grid-template-columns:1fr; }
+  .booking-selection-panel { position:static; }
+  .booking-selection-panel.is-floating { position:fixed; }
+}
 @media(max-width:700px) {
   .booking-choice-row,.booking-form-fields { grid-template-columns:1fr; }
   .booking-form-fields .form-group:last-child { grid-column:auto; }
   .booking-calendar { padding:.8rem; }
   .booking-calendar-heading,.booking-details-heading { align-items:flex-start; flex-direction:column; }
   .booking-calendar-legend { margin-top:.5rem; }
-  .booking-day { min-height:4.1rem; padding:.4rem; }
-  .booking-day-state { font-size:.68rem; }
+  .booking-calendar-controls h3 { min-width:0; flex:1; font-size:1.05rem; }
+  .booking-month-button { min-width:2.25rem; padding-inline:.4rem; }
+  .booking-progress ol { gap:.35rem; }
+  .booking-progress li { flex-direction:column; align-items:flex-start; gap:.3rem; padding:.5rem; font-size:.78rem; }
+  .booking-day { min-height:3.45rem; padding:.35rem .2rem; text-align:center; }
+  .booking-day-selection-label { display:none; }
+  .booking-day-state { font-size:0; margin-top:.2rem; line-height:1; }
+  .booking-day-available .booking-day-state::before { content:'✓'; color:var(--booking-green); font-size:.72rem; font-weight:700; }
+  .booking-day-unavailable .booking-day-state::before { content:'×'; color:var(--booking-red); font-size:.78rem; font-weight:700; }
+  .booking-day-selected .booking-day-state::before { color:#fff; }
+}
+@media(max-width:380px) {
+  .booking-calendar { padding:.55rem; }
+  .booking-weekdays,.booking-days { gap:.18rem; }
+  .booking-day { min-height:3.1rem; padding:.25rem .1rem; border-radius:.3rem; }
+  .booking-selection-panel.is-floating { width:calc(100vw - 1rem); padding:.6rem .65rem; gap:.2rem .55rem; }
+  .booking-selection-panel.is-floating .booking-selection-summary { gap:.1rem .5rem; }
+  .booking-selection-panel.is-floating .booking-continue { padding:.55rem .7rem; font-size:.88rem; }
 }
 </style>
 
@@ -234,6 +323,9 @@
   const bookingSummary = form.querySelector('[data-booking-summary]');
   const message = form.querySelector('[data-booking-messages]');
   const submit = form.querySelector('[data-booking-submit]');
+  const progressSteps = [...form.querySelectorAll('[data-booking-progress-step]')];
+  const selectionPanel = form.querySelector('[data-selection-panel]');
+  const publicContainer = form.closest('.booking-public');
   const apiBase = form.dataset.apiBase.replace(/\/$/, '');
   let facilities = JSON.parse(form.dataset.facilities);
   let visibleMonth = null;
@@ -270,7 +362,8 @@
     checkIn: '{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_IN'|t|e('js') }}',
     checkOut: '{{ 'PLUGIN_BOOKING.PUBLIC.CHECK_OUT'|t|e('js') }}',
     period: '{{ 'PLUGIN_BOOKING.PUBLIC.SELECT_PERIOD'|t|e('js') }}',
-    selectedDates: '{{ 'PLUGIN_BOOKING.PUBLIC.BOOKING_SUMMARY'|t|e('js') }}'
+    selectionReady: '{{ 'PLUGIN_BOOKING.PUBLIC.SELECTION_READY'|t|e('js') }}',
+    selected: '{{ 'PLUGIN_BOOKING.PUBLIC.SELECTED'|t|e('js') }}'
   };
 
   const locale = document.documentElement.lang || 'en';
@@ -313,21 +406,46 @@
     notice.textContent = text;
     message.appendChild(notice);
   };
+  const setProgressStep = (activeStep) => {
+    progressSteps.forEach((step) => {
+      const number = Number(step.dataset.bookingProgressStep);
+      const current = number === activeStep;
+      step.classList.toggle('is-current', current);
+      step.classList.toggle('is-complete', number < activeStep);
+      if (current) step.setAttribute('aria-current', 'step');
+      else step.removeAttribute('aria-current');
+    });
+  };
+  const setSelectionPanelFloating = (floating) => {
+    const isFloating = Boolean(floating) && window.matchMedia('(max-width: 900px)').matches;
+    selectionPanel.classList.toggle('is-floating', isFloating);
+    publicContainer.classList.toggle('has-floating-selection', isFloating);
+  };
   const setStep = (showDetails) => {
     detailsVisible = showDetails;
     selectionStep.hidden = showDetails;
     detailsStep.hidden = !showDetails;
     verificationStep.hidden = true;
+    setProgressStep(showDetails ? 2 : 1);
+    setSelectionPanelFloating(!showDetails && Boolean(selectedStart));
     verificationCode.disabled = true;
     verificationBookingId.disabled = true;
     requesterFields.forEach((field) => { field.disabled = !showDetails; });
-    if (showDetails) form.querySelector('#customer_name').focus({ preventScroll: true });
+    if (showDetails) {
+      detailsStep.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'start'
+      });
+      form.querySelector('#customer_name').focus({ preventScroll: true });
+    }
   };
   const showVerification = (bookingId, emailSent) => {
     detailsVisible = false;
     selectionStep.hidden = true;
     detailsStep.hidden = true;
     verificationStep.hidden = false;
+    setProgressStep(3);
+    setSelectionPanelFloating(false);
     verificationCode.disabled = false;
     verificationBookingId.disabled = false;
     verificationBookingId.value = bookingId;
@@ -342,6 +460,7 @@
     selectedEndWrap.hidden = true;
     checkoutNote.hidden = true;
     makeReservation.disabled = true;
+    setSelectionPanelFloating(false);
   };
   const currentCacheKey = () => [facilitySelect.value, selectedResource(), selectedPeriod()].join('|');
   const resetAvailability = () => {
@@ -407,13 +526,14 @@
     selectedEndWrap.hidden = resourceBooking || !selectedEnd;
     selectedEndNode.textContent = selectedEnd ? formatDate(selectedEnd) : '';
     checkoutNote.hidden = resourceBooking || !selectedStart;
+    setSelectionPanelFloating(Boolean(selectedStart) && !detailsVisible && verificationStep.hidden);
     if (!selectedStart) {
       setCalendarStatus(loading ? copy.loading : copy.selectCheckIn);
       makeReservation.disabled = true;
       return;
     }
     if (resourceBooking) {
-      setCalendarStatus(`${copy.selectedDates}: ${formatDate(selectedStart)}`);
+      setCalendarStatus(copy.selectionReady, 'success');
       makeReservation.disabled = loading || availability.get(selectedStart) !== true;
       return;
     }
@@ -423,7 +543,7 @@
       return;
     }
     const valid = rangeIsAvailable(selectedStart, selectedEnd);
-    setCalendarStatus(valid ? `${copy.checkIn}: ${formatDate(selectedStart)} · ${copy.checkOut}: ${formatDate(selectedEnd)}` : copy.rangeUnavailable, valid ? 'success' : 'warning');
+    setCalendarStatus(valid ? copy.selectionReady : copy.rangeUnavailable, valid ? 'success' : 'warning');
     makeReservation.disabled = loading || !valid;
     if (!facility) makeReservation.disabled = true;
   };
@@ -460,13 +580,25 @@
       dayNumber.className = 'booking-day-number';
       dayNumber.textContent = String(day.getUTCDate());
       button.appendChild(dayNumber);
+      const selectedLabel = key === selectedStart
+        ? (isResourceBooking() ? copy.selected : copy.checkIn)
+        : key === selectedEnd ? copy.checkOut : '';
+      if (selectedLabel) {
+        const selectionLabel = document.createElement('span');
+        selectionLabel.className = 'booking-day-selection-label';
+        selectionLabel.textContent = selectedLabel;
+        button.appendChild(selectionLabel);
+      }
       const status = document.createElement('span');
       status.className = 'booking-day-state';
       status.textContent = available === true ? copy.available : available === false ? copy.unavailable : '';
       button.appendChild(status);
       const statusText = available === undefined ? '' : available ? copy.available : copy.unavailable;
       const checkoutOnly = available === false && canPickCheckout ? `, ${copy.checkoutOption}` : '';
-      button.setAttribute('aria-label', `${formatDate(key, { dateStyle: 'full' })}${statusText ? `, ${statusText}` : ''}${checkoutOnly}`);
+      const selectedAnnouncement = key === selectedStart
+        ? `, ${isResourceBooking() ? copy.selected : copy.checkIn}`
+        : key === selectedEnd ? `, ${copy.checkOut}` : '';
+      button.setAttribute('aria-label', `${formatDate(key, { dateStyle: 'full' })}${statusText ? `, ${statusText}` : ''}${selectedAnnouncement}${checkoutOnly}`);
       button.setAttribute('aria-selected', String(key === selectedStart || key === selectedEnd));
       button.addEventListener('click', () => chooseDate(key, startAllowed, canPickCheckout));
       daysNode.appendChild(button);
@@ -797,6 +929,9 @@
     syncCalendarContext();
   });
   facilitySelect.dispatchEvent(new Event('change'));
+  window.addEventListener('resize', () => {
+    setSelectionPanelFloating(Boolean(selectedStart) && !detailsVisible && verificationStep.hidden);
+  });
 })();
 </script>
 {% endif %}

@@ -357,6 +357,14 @@ en:
     # Public booking form
     PUBLIC:
       TITLE: Book a Facility
+      BOOKING_PROGRESS: Booking progress
+      STEP_DATES: Choose dates
+      STEP_DETAILS: Your details
+      STEP_VERIFY: Verify email
+      YOUR_SELECTION: Your selection
+      CONTINUE_TO_DETAILS: Continue to your details
+      CONTINUE: Continue
+      SELECTION_READY: Dates selected. Continue to your details.
       SELECT_FACILITY: Select Facility
       SELECT_RESOURCE: Select Resource
       SELECT_DATE: Select Date
@@ -758,6 +766,14 @@ cs:
         BOOKING_PAGE_FACILITY_HELP: Vyberte zařízení pro tuto stránku. Návštěvníci uvidí jeho kalendář a nebudou muset zařízení vybírat.
     PUBLIC:
       TITLE: Rezervace zařízení
+      BOOKING_PROGRESS: Průběh rezervace
+      STEP_DATES: Výběr termínu
+      STEP_DETAILS: Vaše údaje
+      STEP_VERIFY: Ověření e-mailu
+      YOUR_SELECTION: Vybraný termín
+      CONTINUE_TO_DETAILS: Pokračovat k údajům
+      CONTINUE: Pokračovat
+      SELECTION_READY: Termín je vybrán. Pokračujte k vyplnění údajů.
       SELECT_FACILITY: Vyberte zařízení
       SELECT_RESOURCE: Vyberte místnost
       SELECT_DATE: Vyberte datum

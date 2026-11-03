@@ -30,13 +30,13 @@
       <nav class="booking-progress" aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.BOOKING_PROGRESS'|t }}">
         <ol>
           <li class="is-current" aria-current="step" data-booking-progress-step="1">
-            <span class="booking-progress-number">1</span><span>{{ 'PLUGIN_BOOKING.PUBLIC.STEP_DATES'|t }}</span>
+            <span class="booking-progress-number">1</span><span class="booking-progress-label">{{ 'PLUGIN_BOOKING.PUBLIC.STEP_DATES'|t }}</span>
           </li>
           <li data-booking-progress-step="2">
-            <span class="booking-progress-number">2</span><span>{{ 'PLUGIN_BOOKING.PUBLIC.STEP_DETAILS'|t }}</span>
+            <span class="booking-progress-number">2</span><span class="booking-progress-label">{{ 'PLUGIN_BOOKING.PUBLIC.STEP_DETAILS'|t }}</span>
           </li>
           <li data-booking-progress-step="3">
-            <span class="booking-progress-number">3</span><span>{{ 'PLUGIN_BOOKING.PUBLIC.STEP_VERIFY'|t }}</span>
+            <span class="booking-progress-number">3</span><span class="booking-progress-label">{{ 'PLUGIN_BOOKING.PUBLIC.STEP_VERIFY'|t }}</span>
           </li>
         </ol>
       </nav>
@@ -84,7 +84,7 @@
           </div>
           <div class="booking-calendar-layout">
             <div class="booking-calendar-main">
-              <div class="booking-calendar-controls">
+              <div class="booking-calendar-controls" role="group" aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.MONTH_NAVIGATION'|t }}">
                 <button type="button" class="btn btn-secondary booking-month-button" data-calendar-previous aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.PREVIOUS_MONTH'|t }}">‹</button>
                 <h3 data-calendar-month aria-live="polite"></h3>
                 <button type="button" class="btn btn-secondary booking-month-button" data-calendar-next aria-label="{{ 'PLUGIN_BOOKING.PUBLIC.NEXT_MONTH'|t }}">›</button>
@@ -183,12 +183,16 @@
 .booking-page-content { max-width:58rem; font-size:1.05rem; line-height:1.65; }
 .booking-page-content:empty { display:none; }
 .booking-page-content > :last-child { margin-bottom:0; }
-.booking-progress { margin:1.5rem 0 1rem; }
-.booking-progress ol { display:flex; gap:.6rem; list-style:none; margin:0; padding:0; max-width:58rem; }
-.booking-progress li { display:flex; flex:1; align-items:center; gap:.6rem; padding:.55rem .75rem; border:1px solid var(--booking-border); border-radius:.55rem; opacity:.68; }
-.booking-progress li.is-current { border-color:var(--booking-primary,#6f42c1); background:color-mix(in srgb,var(--booking-primary,#6f42c1) 8%,transparent); opacity:1; font-weight:700; }
-.booking-progress li.is-complete { opacity:.85; }
-.booking-progress-number { display:grid; width:1.65rem; height:1.65rem; flex:0 0 1.65rem; place-items:center; border:1px solid currentColor; border-radius:50%; font-size:.82rem; }
+.booking-progress { display:block; width:100%; margin:1.5rem 0 1rem; }
+.booking-progress ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); width:100%; list-style:none; margin:0; padding:0; }
+.booking-progress li { position:relative; display:flex; min-width:0; align-items:center; gap:.65rem; padding:.35rem 1rem .35rem 0; opacity:.62; }
+.booking-progress li:not(:last-child)::after { content:""; display:block; flex:1; min-width:.75rem; height:2px; margin-left:.6rem; background:var(--booking-border); }
+.booking-progress li.is-current { opacity:1; font-weight:700; }
+.booking-progress li.is-complete { opacity:.88; }
+.booking-progress li.is-complete::after { background:var(--booking-primary,#6f42c1); }
+.booking-progress-number { display:grid; width:2rem; height:2rem; flex:0 0 2rem; place-items:center; border:2px solid currentColor; border-radius:50%; font-size:.82rem; }
+.booking-progress li.is-current .booking-progress-number { background:var(--booking-primary,#6f42c1); border-color:var(--booking-primary,#6f42c1); color:#fff; }
+.booking-progress-label { white-space:nowrap; }
 .booking-step { margin-block:1.5rem; }
 .booking-choice-row { display:grid; grid-template-columns:repeat(2,minmax(14rem,1fr)); gap:1rem; max-width:52rem; }
 .booking-calendar { margin-top:1.25rem; padding:1.15rem; border:1px solid var(--booking-border); border-radius:.75rem; }
@@ -202,9 +206,9 @@
 .booking-dot-unavailable { background:var(--booking-red); }
 .booking-calendar-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(14rem,17rem); gap:1.25rem; align-items:start; margin-top:.75rem; }
 .booking-calendar-main { min-width:0; }
-.booking-calendar-controls { justify-content:center; margin:1rem 0; }
-.booking-calendar-controls h3 { min-width:12rem; margin:0; text-align:center; }
-.booking-month-button { min-width:2.75rem; font-size:1.3rem; line-height:1; }
+.booking-calendar-controls { display:grid; grid-template-columns:2.75rem minmax(12rem,auto) 2.75rem; justify-content:center; align-items:center; gap:.65rem; margin:1rem 0; }
+.booking-calendar-controls h3 { min-width:0; margin:0; text-align:center; white-space:nowrap; }
+.booking-month-button { display:grid; width:2.75rem; height:2.75rem; min-width:2.75rem; place-items:center; padding:0; border-radius:50%; font-size:1.3rem; line-height:1; }
 .booking-calendar-grid { min-width:0; }
 .booking-weekdays,.booking-days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:.35rem; }
 .booking-weekdays { margin-bottom:.4rem; }
@@ -266,10 +270,12 @@
   .booking-calendar { padding:.8rem; }
   .booking-calendar-heading,.booking-details-heading { align-items:flex-start; flex-direction:column; }
   .booking-calendar-legend { margin-top:.5rem; }
-  .booking-calendar-controls h3 { min-width:0; flex:1; font-size:1.05rem; }
-  .booking-month-button { min-width:2.25rem; padding-inline:.4rem; }
-  .booking-progress ol { gap:.35rem; }
-  .booking-progress li { flex-direction:column; align-items:flex-start; gap:.3rem; padding:.5rem; font-size:.78rem; }
+  .booking-calendar-controls { grid-template-columns:2.5rem minmax(0,1fr) 2.5rem; gap:.4rem; }
+  .booking-calendar-controls h3 { font-size:1.05rem; }
+  .booking-month-button { width:2.5rem; height:2.5rem; min-width:2.5rem; }
+  .booking-progress li { flex-direction:column; align-items:flex-start; gap:.35rem; padding:.35rem .35rem .35rem 0; font-size:.78rem; }
+  .booking-progress li:not(:last-child)::after { display:none; }
+  .booking-progress-label { white-space:normal; }
   .booking-day { min-height:3.45rem; padding:.35rem .2rem; text-align:center; }
   .booking-day-selection-label { display:none; }
   .booking-day-state { font-size:0; margin-top:.2rem; line-height:1; }

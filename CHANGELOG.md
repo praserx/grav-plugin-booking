@@ -5,8 +5,8 @@
 1. [](#new)
    - Add facility-specific booking pages with a calendar and reservation form.
 2. [](#improved)
-   - Make the public booking flow easier to follow with a compact calendar,
-     clearer date selection, and a persistent continuation action.
+   - Improve the public booking flow with aligned month controls, a clearer
+     progress indicator, and a persistent selection summary and continuation action.
 
 # 1.0.0-rc1
 

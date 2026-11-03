@@ -361,6 +361,7 @@ en:
       STEP_DATES: Choose dates
       STEP_DETAILS: Your details
       STEP_VERIFY: Verify email
+      MONTH_NAVIGATION: Calendar month navigation
       YOUR_SELECTION: Your selection
       CONTINUE_TO_DETAILS: Continue to your details
       CONTINUE: Continue
@@ -770,6 +771,7 @@ cs:
       STEP_DATES: Výběr termínu
       STEP_DETAILS: Vaše údaje
       STEP_VERIFY: Ověření e-mailu
+      MONTH_NAVIGATION: Navigace mezi měsíci kalendáře
       YOUR_SELECTION: Vybraný termín
       CONTINUE_TO_DETAILS: Pokračovat k údajům
       CONTINUE: Pokračovat
